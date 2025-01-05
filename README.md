@@ -69,11 +69,13 @@ This will create the InitialCreate migration, scaffold the database schema, and 
 
 1. Set the appropriate connection string in your appsettings.json file:
 
+```json
 {
   "ConnectionStrings": {
     "DefaultConnection": "Your SQL Server Connection String Here"
   }
 }
+```
 
 2. Run the application using Visual Studio or the command line:
 
