@@ -48,7 +48,6 @@ namespace tennisclub.Pages.Users
                 return NotFound($"Unable to update. User with ID {User.Id} was not found.");
             }
 
-            // Update fields explicitly to prevent overwriting unintended data
             existingUser.FirstName = User.FirstName;
             existingUser.LastName = User.LastName;
             existingUser.Email = User.Email;

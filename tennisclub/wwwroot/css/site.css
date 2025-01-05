@@ -1,22 +1,71 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.btn-primary {
+    background-color: #28a745; /* Light background */
+}
+
+.btn-secondary {
+    background-color: #ff0000; /* Red background */
+}
+
+.btn-danger {
+    background-color: #ff0000; /* Red background */
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
+/* Logo Section */
+.logo-container {
+    background-color: #f8f9fa; /* Light background */
+    padding: 20px;
+}
+
+.logo {
+    max-width: 150px;
+    height: auto;
+    display: inline-block;
+}
+
+.logo-container h1 {
+    font-size: 2rem;
+    color: #28a745; /* Tennis green */
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Center Navigation */
+.navbar {
+    margin-top: 10px;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    color: #ffffff; /* White text */
+    transition: color 0.3s ease;
+}
+
+    .navbar-nav .nav-link:hover {
+        color: #28a745; /* Tennis green on hover */
+    }
