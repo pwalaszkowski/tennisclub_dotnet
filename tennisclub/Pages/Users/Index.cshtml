@@ -6,9 +6,7 @@
 
 <h1>Welcome to Tennis Club Members Page</h1>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Create New User</a>
-</p>
+<p>The purpose of this page is to show the RazorBlade and MVP capabilities using .NET</p>
 
 <table class="table table-striped">
     <thead>
@@ -16,6 +14,9 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
+            <th>Phone Number</th>
+            <th>Membership Start Date</th>
+            <th>Membership End Date</th>
             <th>Membership Type</th>
             <th>Actions</th>
         </tr>
@@ -27,12 +28,15 @@
                 <td>@user.FirstName</td>
                 <td>@user.LastName</td>
                 <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.MembershipStartDate</td>
+                <td>@user.MembershipEndDate</td>
                 <td>@user.MembershipType</td>
+                
                 <td>
                     <a asp-page="/Users/Edit" asp-route-id="@user.Id" class="btn btn-primary btn-sm">Edit</a>
-                    <form asp-page="/Users/Delete" asp-route-id="@user.Id" method="post" class="d-inline">
-                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                    </form>
+                    <a asp-page="/Users/Delete" asp-route-id="@user.Id" class="btn btn-danger btn-sm">Delete</a>
+
                 </td>
             </tr>
         }
