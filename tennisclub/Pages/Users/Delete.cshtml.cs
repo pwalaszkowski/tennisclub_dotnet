@@ -17,24 +17,49 @@ namespace tennisclub.Pages.Users
             _context = context;
         }
 
-        public IActionResult OnGet(int id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            User = _context.Users.Find(id);
+            if (id == null)
+            {
+                return BadRequest("User ID must be provided.");
+            }
+
+            User = await _context.Users.FindAsync(id);
+
             if (User == null)
             {
-                return NotFound();
+                return NotFound($"User with ID {id} was not found.");
             }
+
             return Page();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
-            var userToDelete = _context.Users.Find(User.Id);
-            if (userToDelete != null)
+            if (id == null)
             {
-                _context.Users.Remove(userToDelete);
-                _context.SaveChanges();
+                return BadRequest("User ID must be provided.");
             }
+
+            var userToDelete = await _context.Users.FindAsync(id);
+
+            if (userToDelete == null)
+            {
+                return NotFound($"Unable to delete. User with ID {id} was not found.");
+            }
+
+            _context.Users.Remove(userToDelete);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, $"An error occurred while deleting the user: {ex.Message}");
+                return Page();
+            }
+
             return RedirectToPage("./Index");
         }
     }

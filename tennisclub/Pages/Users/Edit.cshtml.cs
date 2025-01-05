@@ -17,25 +17,59 @@ namespace tennisclub.Pages.Users
             _context = context;
         }
 
-        public IActionResult OnGet(int id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            User = _context.Users.Find(id);
+            if (id == null)
+            {
+                return BadRequest("User ID must be provided.");
+            }
+
+            User = await _context.Users.FindAsync(id);
+
             if (User == null)
             {
-                return NotFound();
+                return NotFound($"User with ID {id} was not found.");
             }
+
             return Page();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Users.Update(User);
-                _context.SaveChanges();
-                return RedirectToPage("./Index");
+                return Page();
             }
-            return Page();
+
+            var existingUser = await _context.Users.FindAsync(User.Id);
+
+            if (existingUser == null)
+            {
+                return NotFound($"Unable to update. User with ID {User.Id} was not found.");
+            }
+
+            // Update fields explicitly to prevent overwriting unintended data
+            existingUser.FirstName = User.FirstName;
+            existingUser.LastName = User.LastName;
+            existingUser.Email = User.Email;
+            existingUser.PhoneNumber = User.PhoneNumber;
+            existingUser.DateOfBirth = User.DateOfBirth;
+            existingUser.Address = User.Address;
+            existingUser.MembershipType = User.MembershipType;
+            existingUser.MembershipStartDate = User.MembershipStartDate;
+            existingUser.MembershipEndDate = User.MembershipEndDate;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, $"An error occurred while saving changes: {ex.Message}");
+                return Page();
+            }
+
+            return RedirectToPage("./Index");
         }
     }
 }
