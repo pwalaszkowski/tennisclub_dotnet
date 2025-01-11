@@ -141,3 +141,22 @@ The users can create new courts/edit and delete existing ones.
 
 ### Courts Reservation
 This feature is planned in future
+
+## Running Xunit Tests
+## Installing NuGet packages
+
+1. Run the following commands in the Package Manager Console (PMC) to
+install the required NuGet packages:
+
+```bash 
+dotnet add package Moq 
+dotnet add package Microsoft.EntityFrameworkCore.InMemory
+dotnet add package xunit
+```
+
+2. Navigate to Test Explorer in Visual Studio or run command `dotnet test`
+
+* Use Visual Studio's built-in testing tools:
+* Open the Test Explorer from the menu: Test > Test Explorer.
+* Build your solution. The tests should appear in the Test Explorer.
+* Click Run All to execute all tests or select individual tests to run.
