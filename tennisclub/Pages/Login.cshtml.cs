@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using tennisclub.Data;
+using tennisclub.Controllers.Data;
+
 
 namespace tennisclub.Pages
 {

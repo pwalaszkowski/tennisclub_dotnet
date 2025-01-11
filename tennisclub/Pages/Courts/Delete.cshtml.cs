@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using tennisclub.Data;
+using tennisclub.Controllers.Data;
 using tennisclub.Models;
 
 namespace tennisclub.Pages.Courts

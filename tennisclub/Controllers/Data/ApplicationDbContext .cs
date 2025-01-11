@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using tennisclub.Models;
 
-namespace tennisclub.Data
+namespace tennisclub.Controllers.Data
 {
     public class ApplicationDbContext : DbContext
     {
@@ -9,14 +9,12 @@ namespace tennisclub.Data
             : base(options)
         {
         }
-
         public DbSet<User> Users { get; set; }
         public DbSet<Court> Courts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
         }
     }
 }

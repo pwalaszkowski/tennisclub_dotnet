@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using tennisclub.Data;
+using tennisclub.Controllers.Data;
 using tennisclub.Models;
 
 namespace tennisclub.Controllers
@@ -8,7 +8,6 @@ namespace tennisclub.Controllers
     public class CourtsController : Controller
     {
         private readonly ApplicationDbContext _context;
-
         public CourtsController(ApplicationDbContext context)
         {
             _context = context;
@@ -83,7 +82,6 @@ namespace tennisclub.Controllers
             }
             return View(court);
         }
-
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -110,7 +108,6 @@ namespace tennisclub.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool CourtExists(int id)
         {
             return _context.Courts.Any(e => e.CourtId == id);
