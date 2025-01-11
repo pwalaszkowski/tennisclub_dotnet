@@ -11,5 +11,6 @@ namespace tennisclub.Controllers.Data
         }
 
         public DbSet<User> Users { get; set; } // DbSet dla klasy User
+        public DbSet<Court> Courts { get; set; } // DbSet dla klasy Court
     }
 }
