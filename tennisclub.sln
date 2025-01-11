@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tennisclub", "tennisclub\tennisclub.csproj", "{525D23A3-DA4D-47DE-87B0-A0CDB49E5F44}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tennisclub.Tests", "TennisClub.Tests\tennisclub.Tests.csproj", "{E2D3FB4F-B673-48CE-8545-FB1DEC4EE370}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{525D23A3-DA4D-47DE-87B0-A0CDB49E5F44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{525D23A3-DA4D-47DE-87B0-A0CDB49E5F44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{525D23A3-DA4D-47DE-87B0-A0CDB49E5F44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2D3FB4F-B673-48CE-8545-FB1DEC4EE370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2D3FB4F-B673-48CE-8545-FB1DEC4EE370}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2D3FB4F-B673-48CE-8545-FB1DEC4EE370}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2D3FB4F-B673-48CE-8545-FB1DEC4EE370}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
