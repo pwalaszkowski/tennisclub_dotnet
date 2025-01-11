@@ -65,7 +65,7 @@ namespace tennisclub.Pages
                 return Redirect(returnUrl);
             }
 
-            return RedirectToPage("/Index");
+            return RedirectToPage("/Home");
         }
     }
 }

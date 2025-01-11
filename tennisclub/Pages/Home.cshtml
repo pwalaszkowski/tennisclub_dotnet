@@ -1,0 +1,18 @@
+﻿@page
+@model tennisclub.Pages.HomeModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<h1>Welcome to the Tennis Club!</h1>
+
+<p>We are delighted to have you here. Explore our membership options, book courts, and more.</p>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>Hello, @User.Identity.Name! You are logged in. Enjoy your visit!</p>
+}
+else
+{
+    <p>Please <a asp-page="/Login">log in</a> to access your account.</p>
+}
