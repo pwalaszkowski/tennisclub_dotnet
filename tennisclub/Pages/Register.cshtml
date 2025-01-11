@@ -2,6 +2,10 @@
 @model tennisclub.Pages.RegisterModel
 
 <h2>Register</h2>
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div style="color: red;">@Model.ErrorMessage</div>
+}
 
 <form method="post">
     <div>
@@ -57,5 +61,6 @@
         <input asp-for="NewUser.Password" type="password" class="form-control" />
         <span asp-validation-for="NewUser.Password"></span>
     </div>
+    <br>
     <button type="submit" class="btn btn-primary">Register</button>
 </form>

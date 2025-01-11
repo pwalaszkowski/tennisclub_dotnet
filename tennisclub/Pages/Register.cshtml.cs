@@ -13,6 +13,7 @@ namespace tennisclub.Pages
 
         [BindProperty]
         public User NewUser { get; set; }
+        public string ErrorMessage { get; set; }
 
         public RegisterModel(ApplicationDbContext context)
         {
@@ -27,6 +28,19 @@ namespace tennisclub.Pages
         {
             if (!ModelState.IsValid)
             {
+                return Page();
+            }
+
+            // Check if username or email already exists
+            if (_context.Users.Any(u => u.Login == NewUser.Login))
+            {
+                ErrorMessage = "Username is already taken. Please choose a different username.";
+                return Page();
+            }
+
+            if (_context.Users.Any(u => u.Email == NewUser.Email))
+            {
+                ErrorMessage = "Email is already registered. Please use a different email.";
                 return Page();
             }
 
