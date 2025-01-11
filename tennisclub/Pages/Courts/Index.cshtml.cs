@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using tennisclub.Data;
 using tennisclub.Models;
 
-namespace tennisclub.Pages.Users
+namespace tennisclub.Pages.Courts
 {
     public class IndexModel : PageModel
     {
@@ -13,11 +14,11 @@ namespace tennisclub.Pages.Users
             _context = context;
         }
 
-        public IList<User> Users { get; private set; }
+        public IList<Court> Courts { get; set; }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Users = _context.Users.ToList();
+            Courts = await _context.Courts.ToListAsync();
         }
     }
 }

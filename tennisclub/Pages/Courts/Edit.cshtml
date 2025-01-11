@@ -1,0 +1,33 @@
+﻿@page "{id:int}"
+@model tennisclub.Pages.Courts.EditModel
+
+<h1>Edit Court</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Court.CourtId" />
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" asp-for="Court.Name" class="form-control" />
+        <span asp-validation-for="Court.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Location">Location</label>
+        <input type="text" asp-for="Court.Location" class="form-control" />
+        <span asp-validation-for="Court.Location" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Surface">Surface</label>
+        <select asp-for="Court.Surface" class="form-control">
+            <option value="Clay">Clay</option>
+            <option value="Grass">Grass</option>
+            <option value="Hard">Hard</option>
+            <option value="Carpet">Carpet</option>
+        </select>
+        <span asp-validation-for="Court.Surface" class="text-danger"></span>
+    </div>
+    <br>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="/Courts/Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

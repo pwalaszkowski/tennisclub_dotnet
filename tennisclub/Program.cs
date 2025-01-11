@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using tennisclub.Controllers.Data;
+using tennisclub.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
