@@ -1,0 +1,66 @@
+﻿@page
+@model tennisclub.Pages.RegisterModel
+
+<h2>Register</h2>
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div style="color: red;">@Model.ErrorMessage</div>
+}
+
+<form method="post">
+    <div>
+        <label asp-for="NewUser.FirstName" class="control-label">First Name</label>
+        <input asp-for="NewUser.FirstName" class="form-control" />
+        <span asp-validation-for="NewUser.FirstName"></span>
+    </div>
+    <div>
+        <label asp-for="NewUser.LastName" class="control-label">Last Name</label>
+        <input asp-for="NewUser.LastName" class="form-control" />
+        <span asp-validation-for="NewUser.LastName"></span>
+    </div>
+    <div>
+        <label asp-for="NewUser.Email" class="control-label">Email</label>
+        <input asp-for="NewUser.Email" class="form-control" />
+        <span asp-validation-for="NewUser.Email"></span>
+    </div>
+    <div>
+        <label asp-for="NewUser.PhoneNumber" class="control-label">Phone Number</label>
+        <input asp-for="NewUser.PhoneNumber" class="form-control" />
+        <span asp-validation-for="NewUser.PhoneNumber"></span>
+    </div>
+    <div>
+        <label asp-for="NewUser.DateOfBirth" class="control-label">Date of Birth</label>
+        <input asp-for="NewUser.DateOfBirth" type="date" class="form-control" />
+        <span asp-validation-for="NewUser.DateOfBirth"></span>
+    </div>
+    <div>
+        <label asp-for="NewUser.Address" class="control-label">Address</label>
+        <input asp-for="NewUser.Address" class="form-control" />
+        <span asp-validation-for="NewUser.Address"></span>
+    </div>
+    <div>
+        <label asp-for="NewUser.MembershipType" class="control-label">Membership Type</label>
+        <select asp-for="NewUser.MembershipType" class="form-control">
+            <option value="Basic">Basic</option>
+            <option value="Premium">Premium</option>
+        </select>
+        <span asp-validation-for="NewUser.MembershipType"></span>
+    </div>
+    <div>
+        <label asp-for="NewUser.MembershipStartDate" class="control-label">Membership Start Date</label>
+        <input asp-for="NewUser.MembershipStartDate" type="date" class="form-control" />
+        <span asp-validation-for="NewUser.MembershipStartDate"></span>
+    </div>
+    <div>
+        <label asp-for="NewUser.Login" class="control-label">Login</label>
+        <input asp-for="NewUser.Login" class="form-control" />
+        <span asp-validation-for="NewUser.Login"></span>
+    </div>
+    <div>
+        <label asp-for="NewUser.Password" class="control-label">Password</label>
+        <input asp-for="NewUser.Password" type="password" class="form-control" />
+        <span asp-validation-for="NewUser.Password"></span>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
