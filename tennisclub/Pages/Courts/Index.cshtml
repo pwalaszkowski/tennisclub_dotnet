@@ -1,0 +1,30 @@
+﻿@page
+@model tennisclub.Pages.Courts.IndexModel
+
+<h1>Courts</h1>
+
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Surface</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var court in Model.Courts)
+        {
+            <tr>
+                <td>@court.Name</td>
+                <td>@court.Location</td>
+                <td>@court.Surface</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@court.CourtId" class="btn btn-primary btn-sm">Edit</a>
+                    <a asp-page="Delete" asp-route-id="@court.CourtId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
