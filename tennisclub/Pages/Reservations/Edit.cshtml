@@ -1,38 +1,39 @@
-﻿@page "./Edit/{id:int}"
+﻿@page
 @model tennisclub.Pages.Reservations.EditModel
+
+@{
+    ViewData["Title"] = "Edit Reservation";
+}
 
 <h1>Edit Reservation</h1>
 
-<form method="post">
+<form asp-action="Edit">
+    <input type="hidden" asp-for="CourtReservation.ReservationId" />
+
     <div class="form-group">
-        <label for="ReservationId">Reservation ID</label>
-        <input type="text" id="ReservationId" name="ReservationId" value="@Model.Reservation.ReservationId" readonly class="form-control" />
+        <label asp-for="CourtReservation.ReservationDate" class="control-label">Reservation Date</label>
+        <input asp-for="CourtReservation.ReservationDate" class="form-control" type="date" />
+        <span asp-validation-for="CourtReservation.ReservationDate" class="text-danger"></span>
     </div>
+
     <div class="form-group">
-        <label for="UserId">User</label>
-        <input type="text" id="UserId" name="UserId" value="@Model.Reservation.UserId" class="form-control" />
+        <label asp-for="CourtReservation.StartTime" class="control-label">Start Time</label>
+        <input asp-for="CourtReservation.StartTime" class="form-control" type="time" />
+        <span asp-validation-for="CourtReservation.StartTime" class="text-danger"></span>
     </div>
+
     <div class="form-group">
-        <label for="CourtId">Court</label>
-        <input type="text" id="CourtId" name="CourtId" value="@Model.Reservation.CourtId" class="form-control" />
+        <label asp-for="CourtReservation.EndTime" class="control-label">End Time</label>
+        <input asp-for="CourtReservation.EndTime" class="form-control" type="time" />
+        <span asp-validation-for="CourtReservation.EndTime" class="text-danger"></span>
     </div>
+
     <div class="form-group">
-        <label for="ReservationDate">Date</label>
-        <input type="date" id="ReservationDate" name="ReservationDate" value="@Model.Reservation.ReservationDate.ToString("yyyy-MM-dd")" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label for="StartTime">Start Time</label>
-        <input type="time" id="StartTime" name="StartTime" value="@Model.Reservation.StartTime" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label for="EndTime">End Time</label>
-        <input type="time" id="EndTime" name="EndTime" value="@Model.Reservation.EndTime" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label for="Notes">Notes</label>
-        <textarea id="Notes" name="Notes" class="form-control">@Model.Reservation.Notes</textarea>
+        <label asp-for="CourtReservation.Notes" class="control-label">Notes</label>
+        <textarea asp-for="CourtReservation.Notes" class="form-control"></textarea>
+        <span asp-validation-for="CourtReservation.Notes" class="text-danger"></span>
     </div>
     <br>
     <button type="submit" class="btn btn-primary">Save</button>
-    <a href="/Reservation/Index" class="btn btn-secondary">Cancel</a>
+    <a asp-page="./Index" class="btn btn-secondary">Cancel</a>
 </form>

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using tennisclub.Models;
 using tennisclub.Controllers.Data;
 
 namespace tennisclub.Pages.Reservations
@@ -9,35 +8,50 @@ namespace tennisclub.Pages.Reservations
     {
         private readonly ApplicationDbContext _context;
 
-        [BindProperty]
-        public CourtReservation Reservation { get; set; }
-
         public DeleteModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
+        [BindProperty]
+        public CourtReservation CourtReservation { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Reservation = await _context.CourtReservations.FindAsync(id);
-            if (Reservation == null)
+            CourtReservation = await _context.CourtReservations.FindAsync(id);
+
+            if (CourtReservation == null || CourtReservation.UserId != GetCurrentUserId())
             {
                 return NotFound();
             }
+
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-            Reservation = await _context.CourtReservations.FindAsync(id);
+            var reservation = await _context.CourtReservations.FindAsync(id);
 
-            if (Reservation != null)
+            if (reservation == null || reservation.UserId != GetCurrentUserId())
             {
-                _context.CourtReservations.Remove(Reservation);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
 
+            _context.CourtReservations.Remove(reservation);
+            await _context.SaveChangesAsync();
+
             return RedirectToPage("./Index");
+        }
+
+        private int GetCurrentUserId()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId.HasValue)
+            {
+                return userId.Value;
+            }
+
+            throw new InvalidOperationException("User is not logged in.");
         }
     }
 }

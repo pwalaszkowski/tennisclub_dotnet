@@ -1,41 +1,38 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using tennisclub.Models;
 
-namespace tennisclub.Models
+public class CourtReservation
 {
-    public class CourtReservation
-    {
-        [Key]
-        public int ReservationId { get; set; }
+    [Key]
+    public int ReservationId { get; set; }
 
-        [Required]
-        public int UserId { get; set; } // Foreign key for User
+    [Required]
+    public int UserId { get; set; }
 
-        [ForeignKey("UserId")]
-        public User User { get; set; }
+    public virtual User? User { get; set; }  // Make nullable
 
-        [Required]
-        public int CourtId { get; set; } // Foreign key for Court
+    [Required]
+    public int CourtId { get; set; }
 
-        [ForeignKey("CourtId")]
-        public Court Court { get; set; }
+    public virtual Court? Court { get; set; }  // Make nullable
 
-        [Required]
-        public DateTime ReservationDate { get; set; } // Date of the reservation
+    [Required]
+    public DateTime ReservationDate { get; set; }
 
-        [Required]
-        [DataType(DataType.Time)]
-        public TimeSpan StartTime { get; set; } // Start time of the reservation
+    [Required]
+    [DataType(DataType.Time)]
+    public TimeSpan StartTime { get; set; }
 
-        [Required]
-        [DataType(DataType.Time)]
-        public TimeSpan EndTime { get; set; } // End time of the reservation
+    [Required]
+    [DataType(DataType.Time)]
+    public TimeSpan EndTime { get; set; }
 
-        [NotMapped] // Ensures this validation is checked at runtime and not stored in the database
-        public bool IsValidTimeRange => StartTime >= TimeSpan.FromHours(7) && EndTime <= TimeSpan.FromHours(22) && StartTime < EndTime;
+    [NotMapped]
+    public bool IsValidTimeRange => StartTime >= TimeSpan.FromHours(7) &&
+                                  EndTime <= TimeSpan.FromHours(22) &&
+                                  StartTime < EndTime;
 
-        [MaxLength(500)]
-        public string Notes { get; set; } // Optional notes for the reservation
-    }
+    [MaxLength(500)]
+    public string? Notes { get; set; }  // Make nullable
 }
