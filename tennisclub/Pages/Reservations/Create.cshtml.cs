@@ -46,7 +46,8 @@ namespace tennisclub.Pages.Reservations
             _context.CourtReservations.Add(CourtReservation);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("Index");
+            // Redirect to the Index page
+            return RedirectToPage("./Index");
         }
     }
 }
