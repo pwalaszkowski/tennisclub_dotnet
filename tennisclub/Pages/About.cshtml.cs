@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace tennisclub.Pages.Users
+namespace tennisclub.Pages
 {
     public class AboutModel : PageModel
     {
