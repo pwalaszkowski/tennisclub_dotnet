@@ -18,7 +18,6 @@ namespace tennisclub.Pages.Reservations
 
         [BindProperty]
         public CourtReservation CourtReservation { get; set; }
-
         public SelectList UsersSelectList { get; set; }
         public SelectList CourtsSelectList { get; set; }
 

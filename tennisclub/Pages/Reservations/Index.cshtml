@@ -31,8 +31,11 @@
                 <td>@reservation.EndTime</td>
                 <td>@reservation.Notes</td>
                 <td>
-                    <a asp-page="Reservations/Edit" asp-route-id="@reservation.ReservationId" class="btn btn-primary btn-sm">Edit</a>
-                    <a asp-page="Reservations/Delete" asp-route-id="@reservation.ReservationId" class="btn btn-danger btn-sm">Delete</a>
+                    @if (reservation.UserId == Model.CurrentUserId)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@reservation.ReservationId" class="btn btn-primary btn-sm">Edit</a>
+                        <a asp-page="./Delete" asp-route-id="@reservation.ReservationId" class="btn btn-danger btn-sm">Delete</a>
+                    }
                 </td>
             </tr>
         }

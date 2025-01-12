@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using tennisclub.Controllers.Data;
-using tennisclub.Models;
 
 namespace tennisclub.Pages.Reservations
 {
@@ -14,10 +13,13 @@ namespace tennisclub.Pages.Reservations
             _context = context;
         }
 
-        public IList<CourtReservation> CourtReservations { get; set; }
+        public List<CourtReservation> CourtReservations { get; set; }
+        public int CurrentUserId { get; private set; }
 
         public async Task OnGetAsync()
         {
+            CurrentUserId = HttpContext.Session.GetInt32("UserId") ?? 0;
+
             CourtReservations = await _context.CourtReservations
                 .Include(r => r.User)
                 .Include(r => r.Court)

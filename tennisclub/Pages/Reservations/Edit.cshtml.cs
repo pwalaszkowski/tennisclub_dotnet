@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using tennisclub.Models;
 using tennisclub.Controllers.Data;
 
 namespace tennisclub.Pages.Reservations
@@ -9,21 +8,23 @@ namespace tennisclub.Pages.Reservations
     {
         private readonly ApplicationDbContext _context;
 
-        [BindProperty]
-        public CourtReservation Reservation { get; set; }
-
         public EditModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
+        [BindProperty]
+        public CourtReservation CourtReservation { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Reservation = await _context.CourtReservations.FindAsync(id);
-            if (Reservation == null)
+            CourtReservation = await _context.CourtReservations.FindAsync(id);
+
+            if (CourtReservation == null || CourtReservation.UserId != GetCurrentUserId())
             {
                 return NotFound();
             }
+
             return Page();
         }
 
@@ -34,25 +35,32 @@ namespace tennisclub.Pages.Reservations
                 return Page();
             }
 
-            _context.Attach(Reservation).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            var existingReservation = await _context.CourtReservations.FindAsync(CourtReservation.ReservationId);
 
-            try
+            if (existingReservation == null || existingReservation.UserId != GetCurrentUserId())
             {
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
-            catch (Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException)
-            {
-                if (!_context.CourtReservations.Any(e => e.ReservationId == Reservation.ReservationId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+
+            existingReservation.ReservationDate = CourtReservation.ReservationDate;
+            existingReservation.StartTime = CourtReservation.StartTime;
+            existingReservation.EndTime = CourtReservation.EndTime;
+            existingReservation.Notes = CourtReservation.Notes;
+
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
+        }
+
+        private int GetCurrentUserId()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId.HasValue)
+            {
+                return userId.Value;
+            }
+
+            throw new InvalidOperationException("User is not logged in.");
         }
     }
 }

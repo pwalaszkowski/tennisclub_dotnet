@@ -6,7 +6,6 @@ using System.Security.Cryptography;
 using System.Text;
 using tennisclub.Controllers.Data;
 
-
 namespace tennisclub.Pages
 {
     public class LoginModel : PageModel
@@ -51,6 +50,7 @@ namespace tennisclub.Pages
                 return Page();
             }
 
+            // Add claims
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Login),
@@ -59,7 +59,11 @@ namespace tennisclub.Pages
 
             var claimsIdentity = new ClaimsIdentity(claims, "CookieAuth");
 
+            // Sign in user
             await HttpContext.SignInAsync("CookieAuth", new ClaimsPrincipal(claimsIdentity));
+
+            // Add user ID to session
+            HttpContext.Session.SetInt32("UserId", user.Id);
 
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
             {
