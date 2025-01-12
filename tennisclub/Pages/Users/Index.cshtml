@@ -30,11 +30,13 @@
                 <td>@user.MembershipStartDate</td>
                 <td>@user.MembershipEndDate</td>
                 <td>@user.MembershipType</td>
-                
-                <td>
-                    <a asp-page="/Users/Edit" asp-route-id="@user.Id" class="btn btn-primary btn-sm">Edit</a>
-                    <a asp-page="/Users/Delete" asp-route-id="@user.Id" class="btn btn-danger btn-sm">Delete</a>
 
+                <td>
+                    @if (Model.CurrentUserId == user.Id.ToString())
+                    {
+                        <a asp-page="/Users/Edit" asp-route-id="@user.Id" class="btn btn-primary btn-sm">Edit</a>
+                        <a asp-page="/Users/Delete" asp-route-id="@user.Id" class="btn btn-danger btn-sm">Delete</a>
+                    }
                 </td>
             </tr>
         }
