@@ -11,6 +11,7 @@ namespace tennisclub.Controllers.Data
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Court> Courts { get; set; }
+        public DbSet<CourtReservation> CourtReservations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
