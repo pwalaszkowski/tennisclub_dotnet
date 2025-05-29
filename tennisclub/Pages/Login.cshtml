@@ -1,0 +1,26 @@
+﻿@page
+@model tennisclub.Pages.LoginModel
+
+<h2>Login</h2>
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div style="color: red;">@Model.ErrorMessage</div>
+}
+<p>Do not have account? <a href="Register">Register First</a></p>
+<form method="post">
+    <input type="hidden" asp-for="@ViewData["ReturnUrl"]" />
+    <div>
+        <label class="control-label">Login</label>
+        <input asp-for="Login" class="form-control"/>
+    </div>
+    <div>
+        <label class="control-label">Password</label>
+        <input asp-for="Password" class="form-control" type="password" />
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Login</button>
+
+</form>
+
+
+

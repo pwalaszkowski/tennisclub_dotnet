@@ -1,0 +1,73 @@
+﻿@page
+@model tennisclub.Pages.Users.EditModel
+
+<h2>Edit User</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="User.Id" />
+
+    <div class="form-group">
+        <label asp-for="User.FirstName" class="control-label">First Name</label>
+        <input asp-for="User.FirstName" class="form-control" />
+        <span asp-validation-for="User.FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="User.LastName" class="control-label">Last Name</label>
+        <input asp-for="User.LastName" class="form-control" />
+        <span asp-validation-for="User.LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="User.Email" class="control-label">Email</label>
+        <input asp-for="User.Email" class="form-control" />
+        <span asp-validation-for="User.Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="User.PhoneNumber" class="control-label">Phone Number</label>
+        <input asp-for="User.PhoneNumber" class="form-control" />
+        <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="User.DateOfBirth" class="control-label">Date of Birth</label>
+        <input asp-for="User.DateOfBirth" class="form-control" type="date" />
+        <span asp-validation-for="User.DateOfBirth" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="User.Address" class="control-label">Address</label>
+        <input asp-for="User.Address" class="form-control" />
+        <span asp-validation-for="User.Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="User.MembershipType" class="control-label">Membership Type</label>
+        <select asp-for="User.MembershipType" class="form-control">
+            <option value="Basic">Basic</option>
+            <option value="Premium">Premium</option>
+        </select>
+        <span asp-validation-for="User.MembershipType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="User.MembershipStartDate" class="control-label">Membership Start Date</label>
+        <input asp-for="User.MembershipStartDate" class="form-control" type="date" />
+        <span asp-validation-for="User.MembershipStartDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="User.MembershipEndDate" class="control-label">Membership End Date</label>
+        <input asp-for="User.MembershipEndDate" class="form-control" type="date" />
+        <span asp-validation-for="User.MembershipEndDate" class="text-danger"></span>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="/Users/Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+

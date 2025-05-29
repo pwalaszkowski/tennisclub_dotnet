@@ -1,0 +1,43 @@
+﻿@page
+@model tennisclub.Pages.Reservations.IndexModel
+
+<h1>Court Reservations</h1>
+
+<a asp-page="./Create" class="btn btn-primary">Create New Reservation</a>
+
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Reservation ID</th>
+            <th>User</th>
+            <th>Court</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Notes</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model.CourtReservations)
+        {
+            <tr>
+                <td>@reservation.ReservationId</td>
+                <td>@reservation.User.FirstName @reservation.User.LastName</td>
+                <td>@reservation.Court.Name</td>
+                <td>@reservation.ReservationDate.ToString("yyyy-MM-dd")</td>
+                <td>@reservation.StartTime</td>
+                <td>@reservation.EndTime</td>
+                <td>@reservation.Notes</td>
+                <td>
+                    @if (reservation.UserId == Model.CurrentUserId)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@reservation.ReservationId" class="btn btn-primary btn-sm">Edit</a>
+                        <a asp-page="./Delete" asp-route-id="@reservation.ReservationId" class="btn btn-danger btn-sm">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
